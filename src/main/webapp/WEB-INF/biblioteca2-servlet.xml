@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userController" name="/index.html" class="controller.user.UserController"
+    p:userService-ref="userService"
+    />
+
+    <bean id="userService" class="service.user.UserService" p:dataSource-ref="dataSource"/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+
+        <property name="url">
+            <value>jdbc:mysql://localhost:3306/book_lib</value>
+        </property>
+
+        <property name="username">
+            <value>root</value>
+        </property>
+
+        <property name="password">
+            <value>root</value>
+        </property>
+    </bean>
+</beans>
