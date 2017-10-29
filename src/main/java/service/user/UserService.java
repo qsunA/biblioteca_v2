@@ -4,7 +4,6 @@ import model.user.UserVO;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import service.StaticTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.user.UserMapper">
+    <insert id="insertUserVO" parameterType="model.user.UserVO">
+        Insert INTO user (name,id,birth_date,sex,pw,phone_number, user_img)
+        VALUES (#{name},#{id},#{birthDate},#{sex},#{pw},#{phoneNumber},#{userImg})
+    </insert>
+
+    <select id="getUserVO" resultType="model.user.UserVO">
+        SELECT
+        name, id, birth_date,sex,pw, phone_number, user_img
+        FROM USER
+    </select>
+</mapper>

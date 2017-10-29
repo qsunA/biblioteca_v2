@@ -25,10 +25,10 @@ public class UserController implements Controller{
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
        List<UserVO> userList= this.userService.getUserList();
         Map<String,Object> model = new HashMap<String,Object>();
-       model.put("userList",userList);
+        model.put("userList",userList);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/jsp/userList.jsp");
+        modelAndView.setViewName("userList");
         modelAndView.addAllObjects(model);
 
         return modelAndView;
