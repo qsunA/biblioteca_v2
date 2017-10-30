@@ -5,26 +5,42 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 비즈니스 계층 -->
+    <bean id="db" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/properties/db.properties</value>
+            </list>
+        </property>
+    </bean>
 
-    <!-- Data Source -->
+    <!-- Data Source-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName">
-            <value>com.mysql.jdbc.Driver</value>
+            <value>${dbPool.DriverClassName}</value>
         </property>
 
         <property name="url">
-            <value>jdbc:mysql://localhost:3306/book_lib</value>
+            <value>${dbPool.Url}</value>
         </property>
 
         <property name="username">
-            <value>root</value>
+            <value>${dbPool.UserName}</value>
         </property>
 
         <property name="password">
-            <value>root</value>
+            <value>${dbPool.Password}</value>
         </property>
     </bean>
 
 
-    <bean id="userService" class="service.user.UserService" p:dataSource-ref="dataSource"/>
+    <bean id="userService" class="service.user.UserService1" p:userMapper-ref="userMapper"/>
+
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="mapper.user.UserMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+     </bean>
 </beans>
