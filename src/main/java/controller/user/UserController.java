@@ -1,9 +1,11 @@
 package controller.user;
 
 import model.user.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
-import service.user.UserService;
 import service.user.UserService1;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Administrator on 2017-10-29.
- */
-public class UserController implements Controller{
 
+@Controller
+public class UserController {
+
+    @Autowired
     private UserService1 userService;
 
-    public void setUserService(UserService1 userService){
-        this.userService = userService;
-    }
-
+    @RequestMapping(value = "/index")
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
        List<UserVO> userList= this.userService.getUserList();
         Map<String,Object> model = new HashMap<String,Object>();
